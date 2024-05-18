@@ -20,7 +20,7 @@ export function ThemeSwitcher() {
             onValueChange={(isSelected) => {
                 isSelected ? setTheme('light') : setTheme('dark')
             }}>
-
+            DarkMode
         </Switch>
     )
 }
