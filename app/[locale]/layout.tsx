@@ -5,6 +5,7 @@ import {Providers} from "@/app/[locale]/providers";
 import {NextIntlClientProvider} from "next-intl";
 import {getMessages} from "next-intl/server";
 import {Navbar} from "@/components/navbar";
+import {Sidebar} from "@/components/sidebar";
 
 
 const inter = Inter({subsets: ["latin"]});
