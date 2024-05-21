@@ -4,6 +4,7 @@ import {Button} from "@nextui-org/button";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@nextui-org/navbar";
 import Image from "next/image";
 import Link from "next/link";
+import {LocalSwitcher} from "@/components/locale-switcher";
 
 
 export default function Home() {
@@ -15,7 +16,9 @@ export default function Home() {
           hello world
           <Button>click me</Button>
           <h1>{h('title')}</h1>
-          <ThemeSwitcher />
+
+
+
       </div>
     </main>
   );

@@ -13,14 +13,13 @@ export function ThemeSwitcher() {
     })
     return (
         <Switch
-            defaultSelected size={"md"}
+            defaultSelected size={"sm"}
             color={'secondary'}
             thumbIcon={({isSelected, className}) => isSelected ? (<SunIcon className={className}/>) :
                 <MoonIcon className={className}/>}
             onValueChange={(isSelected) => {
                 isSelected ? setTheme('light') : setTheme('dark')
             }}>
-            DarkMode
         </Switch>
     )
 }

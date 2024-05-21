@@ -1,68 +1,63 @@
 'use client'
-import {Accordion, AccordionItem} from "@nextui-org/accordion";
-import {Link} from "@/navigation";
 
-export const Sidebar = () => {
-    const menus = [
-        {
-            title: "Dashboard",
-            icon: "home",
-            href: "/dashboard",
-            children: [
-                {
-                    title: "Analytics",
-                    href: "/dashboard/analytics"
-                },
-                {
-                    title: "Sales",
-                    href: "/dashboard/sales"
-                },
-                {
-                    title: "Orders",
-                    href: "/dashboard/orders"
-                }
-            ]
-        },
-        {
-            title: "Profile",
-            icon: "user",
-            href: "/profile"
-        },
-        {
-            title: "Settings",
-            icon: "settings",
-            href: "/settings"
-        },
-        {
-            title: "Logout",
-            icon: "logout",
-            href: "/logout"
-        }
-    ]
-    const defaultContent = "content"
-    return (
-        <Accordion selectionMode="multiple">
-            {
-                menus.map((menu, index) => {
-                    return (
-                        <AccordionItem key={index} aria-label={menu.title} title={menu.title}>
-                            {menu.children ? (
-                                <Accordion selectionMode="single">
-                                    {
-                                        menu.children.map((child, index) => {
-                                            return (
-                                                <AccordionItem key={index} aria-label={child.title} title={child.title}>
-                                                    {defaultContent}
-                                                </AccordionItem>
-                                            )
-                                        })
-                                    }
-                                </Accordion>
-                            ) : menu.title}
-                        </AccordionItem>
-                    )
-                })
-            }
-        </Accordion>
-    )
-}
+
+import React from "react";
+import {Listbox, ListboxItem, ListboxSection} from "@nextui-org/listbox";
+import {Button} from "@nextui-org/button";
+
+type SidebarProps = {
+    menus: SidebarMenu[]
+    isSimple?: boolean,
+} & React.HTMLAttributes<HTMLElement>
+
+const Sidebar: React.FC<SidebarProps> = ({menus, className, isSimple = false, ...props}: {
+    menus: SidebarMenu[],
+    isSimple?: boolean,
+    className?: string
+}) => {
+    const defaultClassName = isSimple?'w-12 p-1':'w-64 p-2'
+    const finalClassName = `${defaultClassName} ${className ? className : ''}`
+    return isSimple ? (
+        <Listbox className={finalClassName} {...props}
+
+        >
+            {menus.map((item, index) => {
+                return item.children ? (
+                    <ListboxSection>
+                        {item.children.map((child, index) => (
+                            <ListboxItem key={child.key || index} href={child.link} startContent={child.icon}>
+                            </ListboxItem>
+                        ))}
+                    </ListboxSection>
+                ):(
+                    <ListboxItem key={item.key || index} startContent={item.icon} href={item.link}>
+                    </ListboxItem>
+                )
+            })}
+
+        </Listbox>
+    ) : (
+        <Listbox className={finalClassName} {...props}
+        >
+            {menus.map((item, index) => {
+                return item.children ? (
+                    <ListboxSection title={item.title} key={item.key || index}>
+                        {item.children.map((child, index) => (
+                            <ListboxItem key={child.key || index} href={child.link} startContent={child.icon}>
+                                {child.title}
+                            </ListboxItem>
+                        ))}
+                    </ListboxSection>
+
+                ) : (
+                    <ListboxItem key={item.key || index} startContent={item.icon} href={item.link}>
+                        {item.title}
+                    </ListboxItem>
+                )
+            })}
+
+        </Listbox>
+    );
+};
+
+export default Sidebar

@@ -8,12 +8,17 @@ import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org
 import {Activity, ChevronDown, Flash, Lock, Scale, SearchIcon, Server, TagUser} from "@/components/icons";
 import {Input} from "@nextui-org/input";
 import {Avatar} from "@nextui-org/avatar";
-import {useState} from "react";
+import React, {useState} from "react";
+import {LocalSwitcher} from "@/components/locale-switcher";
+import {ThemeSwitcher} from "@/components/theme-switcher";
+import {AiFillGithub} from "react-icons/ai";
 
+type NavbarProps = {
+    isLogin?: boolean
+} & React.HTMLAttributes<HTMLElement>
 
-export const Navbar = () => {
+export const Navbar:React.FC<NavbarProps> = ({...props}) => {
     const pathname = usePathname()
-    console.log(pathname)
 
     const [isLogin, setIsLogin] = useState(false)
 
@@ -28,7 +33,7 @@ export const Navbar = () => {
     };
 
     return (
-        <NextUINavBar isBordered={true}>
+        <NextUINavBar isBordered={true} shouldHideOnScroll position={'static'} {...props}>
             <NavbarContent justify={"start"}>
                 <NavbarBrand className={'mr-4'}>
                     <Logo className={'m-2'} size={24}/>
@@ -104,6 +109,7 @@ export const Navbar = () => {
                 </NavbarContent>
             </NavbarContent>
             <NavbarContent justify={'end'}>
+                <LocalSwitcher />
                 <Input
                     classNames={{
                         base: "max-w-full sm:max-w-[10rem] h-10",
@@ -116,7 +122,14 @@ export const Navbar = () => {
                     startContent={<SearchIcon size={18}/>}
                     type="search"
                 />
-                <Button color={'secondary'} className={isLogin ? "hidden" : "block"} onClick={() => {
+
+                <div>
+                    <Link href={'https://github.com/pyronn/nextjs-starter.git'} target={'_blank'}>
+                        <AiFillGithub size={24} />
+                    </Link>
+                </div>
+                <ThemeSwitcher />
+                <Button color={'secondary'} size={'sm'} className={isLogin ? "hidden" : "block"} onClick={() => {
                     setIsLogin(true)
                 }}>Sign Up</Button>
                 <Dropdown placement="bottom-end">

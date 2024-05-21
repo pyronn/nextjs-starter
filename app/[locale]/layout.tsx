@@ -3,9 +3,8 @@ import {Inter} from "next/font/google";
 import "../globals.css";
 import {Providers} from "@/app/[locale]/providers";
 import {NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
+import {getLocale, getMessages} from "next-intl/server";
 import {Navbar} from "@/components/navbar";
-import {Sidebar} from "@/components/sidebar";
 
 
 const inter = Inter({subsets: ["latin"]});
@@ -16,9 +15,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-                                       children,
-    params:{locale},
-                                   }: Readonly<{
+                                             children,
+                                             params: {locale},
+                                         }: Readonly<{
     children: React.ReactNode;
     params: { locale: string };
 }>) {
@@ -28,8 +27,12 @@ export default async function RootLayout({
         <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
             <Providers>
-                <Navbar />
-                {children}
+                <main className={'flex flex-col'}>
+                    <Navbar className={'flex-auto'}/>
+                    <div className={'flex-1'}>
+                        {children}
+                    </div>
+                </main>
             </Providers>
         </NextIntlClientProvider>
         </body>
