@@ -5,6 +5,7 @@ import {Providers} from "@/app/[locale]/providers";
 import {NextIntlClientProvider} from "next-intl";
 import {getLocale, getMessages} from "next-intl/server";
 import {Navbar} from "@/components/navbar";
+import ScrollToTopButton from "@/components/scroll-to-top";
 
 
 const inter = Inter({subsets: ["latin"]});
@@ -32,6 +33,7 @@ export default async function RootLayout({
                     <div className={'flex-1'}>
                         {children}
                     </div>
+                    <ScrollToTopButton />
                 </main>
             </Providers>
         </NextIntlClientProvider>
