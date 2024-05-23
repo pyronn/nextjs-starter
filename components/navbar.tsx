@@ -11,13 +11,14 @@ import {Avatar} from "@nextui-org/avatar";
 import React, {useState} from "react";
 import {LocalSwitcher} from "@/components/locale-switcher";
 import {ThemeSwitcher} from "@/components/theme-switcher";
-import {AiFillGithub} from "react-icons/ai";
+import {AiFillGithub, AiOutlineDown} from "react-icons/ai";
+import {Link as NextUILink} from '@nextui-org/react'
 
 type NavbarProps = {
     isLogin?: boolean
 } & React.HTMLAttributes<HTMLElement>
 
-export const Navbar:React.FC<NavbarProps> = ({...props}) => {
+export const Navbar: React.FC<NavbarProps> = ({...props}) => {
     const pathname = usePathname()
 
     const [isLogin, setIsLogin] = useState(false)
@@ -37,23 +38,15 @@ export const Navbar:React.FC<NavbarProps> = ({...props}) => {
             <NavbarContent justify={"start"}>
                 <NavbarBrand className={'mr-4'}>
                     <Logo className={'m-2'} size={24}/>
-                    <Link className={'hidden sm:block font-bold text-inherit'} href={'/'}>
+                    <NextUILink className={'hidden sm:block font-bold text-inherit'} href={'/'}>
                         NestjsStarter
-                    </Link>
+                    </NextUILink>
                 </NavbarBrand>
                 <NavbarContent className={'hidden sm:flex gap-3'}>
                     <Dropdown>
                         <NavbarItem>
                             <DropdownTrigger>
-                                <Button
-                                    disableRipple
-                                    className="p-0 bg-transparent data-[hover=true]:bg-transparent"
-                                    endContent={icons.chevron}
-                                    radius="sm"
-                                    variant="light"
-                                >
-                                    Features
-                                </Button>
+                                <NextUILink href={'#'} color={'foreground'}>Features<AiOutlineDown /></NextUILink>
                             </DropdownTrigger>
                         </NavbarItem>
                         <DropdownMenu
@@ -101,15 +94,15 @@ export const Navbar:React.FC<NavbarProps> = ({...props}) => {
                         </DropdownMenu>
                     </Dropdown>
                     <NavbarItem isActive={pathname.includes('pricing')}>
-                        <Link href={'/pricing'} color={'secondary'}>Pricing</Link>
+                        <NextUILink href={'/pricing'} color={'foreground'}>Pricing</NextUILink>
                     </NavbarItem>
                     <NavbarItem isActive={pathname.includes('about')}>
-                        <Link href={'/about'} color={'secondary'}>About</Link>
+                        <NextUILink href={'/about'} color={'foreground'}>About</NextUILink>
                     </NavbarItem>
                 </NavbarContent>
             </NavbarContent>
             <NavbarContent justify={'end'}>
-                <LocalSwitcher />
+                <LocalSwitcher/>
                 <Input
                     classNames={{
                         base: "max-w-full sm:max-w-[10rem] h-10",
@@ -125,10 +118,10 @@ export const Navbar:React.FC<NavbarProps> = ({...props}) => {
 
                 <div>
                     <Link href={'https://github.com/pyronn/nextjs-starter.git'} target={'_blank'}>
-                        <AiFillGithub size={24} />
+                        <AiFillGithub size={24}/>
                     </Link>
                 </div>
-                <ThemeSwitcher />
+                <ThemeSwitcher/>
                 <Button color={'secondary'} size={'sm'} className={isLogin ? "hidden" : "block"} onClick={() => {
                     setIsLogin(true)
                 }}>Sign Up</Button>

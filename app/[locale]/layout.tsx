@@ -86,7 +86,7 @@ const footerData = {
     ],
 }
 
-export default async function RootLayout({
+export default async function LocalLayout({
                                              children,
                                              params: {locale},
                                          }: Readonly<{

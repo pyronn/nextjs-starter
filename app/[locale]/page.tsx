@@ -1,25 +1,40 @@
 import {useTranslations} from "next-intl";
-import {ThemeSwitcher} from "@/components/theme-switcher";
-import {Button} from "@nextui-org/button";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem} from "@nextui-org/navbar";
-import Image from "next/image";
-import Link from "next/link";
-import {LocalSwitcher} from "@/components/locale-switcher";
+import Hero from "@/components/hero";
+import {Pricing} from "@/components/pricing";
 
 
 export default function Home() {
     const h = useTranslations('Home')
-  return (
-    <main className="text-foreground bg-background">
+    const pricePlans = [
+        {
+            title: "Basic",
+            price: 10,
+            description: "Basic plan",
+            link: "#",
+            features: ["Feature 1", "Feature 2"]
+        }, {
+            title: "Pro",
+            price: 20,
+            description: "Pro plan",
+            link: "#",
+            features: ["Feature 1", "Feature 2"]
+        }, {
+            title: "Enterprise",
+            price: 30,
+            description: "Enterprise plan",
+            link: "#",
+            features: ["Feature 1", "Feature 2"]
+        }
+    ]
+    return (
+        <main
+            className="mx-auto mt-6 flex h-[80vh] flex-col items-center text-center gap-8 text-foreground bg-background">
 
-      <div>
-          hello world
-          <Button>click me</Button>
-          <h1>{h('title')}</h1>
+            <Hero/>
+
+            <Pricing pricePlans={pricePlans}/>
 
 
-
-      </div>
-    </main>
-  );
+        </main>
+    );
 }
