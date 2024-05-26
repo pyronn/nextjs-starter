@@ -1,5 +1,6 @@
 import {Metadata} from "next";
 import {Inter} from "next/font/google";
+import AuthProvider from "@/components/auth-provider";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -13,7 +14,10 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     return (
         <html lang={"en"}>
         <body className={"min-h-screen bg-background text-foreground"}>
-        {props.children}
+        <AuthProvider>
+            {props.children}
+        </AuthProvider>
+
         </body>
         </html>
     )
