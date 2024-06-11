@@ -9,6 +9,7 @@ import {MailIcon} from "@nextui-org/shared-icons";
 import {Checkbox} from "@nextui-org/checkbox";
 import {Link} from "@nextui-org/link";
 import {LoginModal} from "@/components/login-modal";
+import {Toaster} from "sonner";
 
 
 export default function Home() {
@@ -40,7 +41,7 @@ export default function Home() {
     return (
         <main
             className="mx-auto mt-6 flex h-[80vh] flex-col items-center text-center gap-8 text-foreground bg-background">
-
+            <Toaster position={'top-center'}/>
             <Hero/>
 
             <Pricing pricePlans={pricePlans}/>

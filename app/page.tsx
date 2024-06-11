@@ -4,6 +4,7 @@ import Hero from "@/components/hero";
 import {Pricing} from "@/components/pricing";
 import {Button} from "@nextui-org/button";
 import {LoginModal} from "@/components/login-modal";
+import {Toaster} from "sonner";
 
 export default function Home() {
     const h = useTranslations('Home')
@@ -34,7 +35,7 @@ export default function Home() {
     return (
         <main
             className="mx-auto mt-6 flex h-[80vh] flex-col items-center text-center gap-8 text-foreground bg-background">
-
+            <Toaster position={'top-center'}/>
             <Hero/>
 
             <Pricing pricePlans={pricePlans}/>
