@@ -112,6 +112,10 @@ export const LoginModal = ({isOpen, onOpenChange}: {
         loginSubmit?.click()
     }
 
+    const loginWithGithub = async () =>{
+        await signIn('github')
+    }
+
     const handleRegister = () => {
         const registerSubmit = document.getElementById('registerSubmit')
         registerSubmit?.click()
@@ -126,7 +130,7 @@ export const LoginModal = ({isOpen, onOpenChange}: {
                         <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
                         <ModalBody>
                             <div>
-                                provider
+                                <Button onPress={loginWithGithub}>Login with Github</Button>
                             </div>
                             <Divider title={'login with email'}/>
                             {isRegister ? (

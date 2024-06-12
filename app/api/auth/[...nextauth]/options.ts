@@ -3,16 +3,31 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import {userService} from "@/lib/auth";
+import {PrismaAdapter} from "@auth/prisma-adapter";
+import {PrismaClient} from "@prisma/client";
+
+const prisma = new PrismaClient()
 
 export const authOptions: NextAuthOptions = {
     // Secret for Next-auth, without this JWT encryption/decryption won't work
     secret: process.env.NEXTAUTH_SECRET,
-
+    adapter: PrismaAdapter(prisma),
     // Configure one or more authentication providers
     providers: [
         GithubProvider({
             clientId: process.env.GITHUB_APP_CLIENT_ID as string,
             clientSecret: process.env.GITHUB_APP_CLIENT_SECRET as string,
+            profile(profile) {
+                console.log("github" + profile)
+                profile.refresh
+                return {
+                    id: profile.id.toString(),
+                    name: profile.name ?? profile.login,
+                    email: profile.email,
+                    image: profile.avatar_url
+                }
+            },
+
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_APP_CLIENT_ID as string,
@@ -49,7 +64,7 @@ export const authOptions: NextAuthOptions = {
             if (account && account.type === "credentials") {
                 token.userId = account.providerAccountId
             }
-            console.log('jwt', token,account,profile)
+            // console.log('jwt', token,account,profile)
             return token
         },
         async session({session, token, user}) {

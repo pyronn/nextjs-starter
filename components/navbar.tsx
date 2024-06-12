@@ -142,7 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({...props}) => {
                                 color="secondary"
                                 name="Jason Hughes"
                                 size="sm"
-                                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                                src={data.user.image? data.user.image : "https://i.pravatar.cc/150?u=a042581f4e29026704d"}
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label="Profile Actions" variant="flat">
