@@ -12,7 +12,8 @@ import React, {useState} from "react";
 import {LocalSwitcher} from "@/components/locale-switcher";
 import {ThemeSwitcher} from "@/components/theme-switcher";
 import {AiFillGithub, AiOutlineDown} from "react-icons/ai";
-import {Link as NextUILink, useDisclosure} from '@nextui-org/react'
+import {useDisclosure} from '@nextui-org/use-disclosure'
+import {Link as NextUILink} from '@nextui-org/link'
 import {signOut, useSession} from "next-auth/react";
 import {LoginModal} from "@/components/login-modal";
 
@@ -39,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({...props}) => {
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    const handleLogout = async () =>{
+    const handleLogout = async () => {
         await signOut({callbackUrl: '/'})
     }
 
@@ -142,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({...props}) => {
                                 color="secondary"
                                 name="Jason Hughes"
                                 size="sm"
-                                src={data.user.image? data.user.image : "https://i.pravatar.cc/150?u=a042581f4e29026704d"}
+                                src={data.user.image ? data.user.image : "https://i.pravatar.cc/150?u=a042581f4e29026704d"}
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label="Profile Actions" variant="flat">
@@ -163,7 +164,8 @@ export const Navbar: React.FC<NavbarProps> = ({...props}) => {
                     </Dropdown>
                 ) : (
                     <>
-                        <Button color={'secondary'} size={'sm'} className={isLogin ? "hidden" : "block"} onPress={onOpen}>Sign Up</Button>
+                        <Button color={'secondary'} size={'sm'} className={isLogin ? "hidden" : "block"}
+                                onPress={onOpen}>Sign Up</Button>
                         <LoginModal isOpen={isOpen} onOpenChange={onOpenChange}/>
                     </>
 

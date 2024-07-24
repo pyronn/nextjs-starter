@@ -1,14 +1,7 @@
 'use client'
 import {useTranslations} from "next-intl";
-import Hero from "@/components/hero";
+import {Hero} from "@/components/hero";
 import {Pricing} from "@/components/pricing";
-import {Button} from "@nextui-org/button";
-import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure} from "@nextui-org/react";
-import {Input} from "@nextui-org/input";
-import {MailIcon} from "@nextui-org/shared-icons";
-import {Checkbox} from "@nextui-org/checkbox";
-import {Link} from "@nextui-org/link";
-import {LoginModal} from "@/components/login-modal";
 import {Toaster} from "sonner";
 
 
@@ -36,7 +29,7 @@ export default function Home() {
         }
     ]
 
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
 
     return (
         <main
@@ -45,8 +38,6 @@ export default function Home() {
             <Hero/>
 
             <Pricing pricePlans={pricePlans}/>
-            <Button onPress={onOpen} color="primary">Open Modal</Button>
-            <LoginModal isOpen={isOpen} onOpenChange={onOpenChange}  />
 
         </main>
     );

@@ -3,7 +3,6 @@
 
 import React from "react";
 import {Listbox, ListboxItem, ListboxSection} from "@nextui-org/listbox";
-import {Button} from "@nextui-org/button";
 
 type SidebarProps = {
     menus: SidebarMenu[]
@@ -15,7 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({menus, className, isSimple = false, ..
     isSimple?: boolean,
     className?: string
 }) => {
-    const defaultClassName = isSimple?'w-12 p-1':'w-64 p-2'
+    const defaultClassName = isSimple ? 'w-12 p-1' : 'w-64 p-2'
     const finalClassName = `${defaultClassName} ${className ? className : ''}`
     return isSimple ? (
         <Listbox className={finalClassName} {...props}
@@ -29,7 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({menus, className, isSimple = false, ..
                             </ListboxItem>
                         ))}
                     </ListboxSection>
-                ):(
+                ) : (
                     <ListboxItem key={item.key || index} startContent={item.icon} href={item.link}>
                     </ListboxItem>
                 )

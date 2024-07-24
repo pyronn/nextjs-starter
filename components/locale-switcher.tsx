@@ -1,7 +1,7 @@
 'use client'
 import {useLocale, useTranslations} from "next-intl";
 import {useTransition} from "react";
-import {useParams, usePathname, useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/dropdown";
 import {Button} from "@nextui-org/button";
 import {locales} from "@/config";

@@ -1,5 +1,5 @@
-import {Modal, ModalContent, ModalHeader} from "@nextui-org/modal";
-import {ModalBody, ModalFooter} from "@nextui-org/react";
+'use client'
+import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/modal";
 import {Input} from "@nextui-org/input";
 import {Checkbox} from "@nextui-org/checkbox";
 import {Link} from "@nextui-org/link";
@@ -15,7 +15,8 @@ type LoginModalProps = {
     onOpenChange: () => void
 }
 
-export const LoginModal = ({isOpen, onOpenChange}: {
+// @ts-ignore
+export const LoginModal: React.FC<LoginModalProps> = ({isOpen, onOpenChange}: {
     isOpen: boolean
     onOpenChange: () => void
 }) => {
@@ -112,7 +113,7 @@ export const LoginModal = ({isOpen, onOpenChange}: {
         loginSubmit?.click()
     }
 
-    const loginWithGithub = async () =>{
+    const loginWithGithub = async () => {
         await signIn('github')
     }
 
@@ -120,10 +121,15 @@ export const LoginModal = ({isOpen, onOpenChange}: {
         const registerSubmit = document.getElementById('registerSubmit')
         registerSubmit?.click()
     }
+
+    const handleOnOpenChange = (isOpen: boolean) => {
+        onOpenChange()
+    }
+
     return (
         <Modal
             isOpen={isOpen}
-            onOpenChange={onOpenChange}>
+            onOpenChange={handleOnOpenChange}>
             <ModalContent>
                 {(onClose) => (
                     <>

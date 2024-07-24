@@ -1,4 +1,4 @@
-export default function Hero() {
+export const Hero =() => {
     return (
         <div className="bg-hero bg-cover bg-center h-96 flex items-center justify-center">
             <div className="text-center">
