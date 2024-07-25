@@ -11,7 +11,7 @@ const prisma = new PrismaClient()
 export const authOptions: NextAuthOptions = {
     // Secret for Next-auth, without this JWT encryption/decryption won't work
     secret: process.env.NEXTAUTH_SECRET,
-    adapter: PrismaAdapter(prisma),
+    adapter: process.env.ENABLE_AUTH_DATABASE ? PrismaAdapter(prisma) : undefined,
     // Configure one or more authentication providers
     providers: [
         GithubProvider({
